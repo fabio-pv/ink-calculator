@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import TextFieldDefault from "../../Components/TextFieldDefaultComponent/TextFieldDefault";
-import {HeaderStyle, MainContentStyle, SubContentStyle} from "./style";
+import {HeaderStyle, MainContentStyle, SubContentStyle, TextFieldContentStyle} from "./style";
+import WallComponent from "./WallComponent";
 
 class CalculatorScreen extends Component {
     static ROUTE = '/';
@@ -10,17 +10,10 @@ class CalculatorScreen extends Component {
             <>
                 <HeaderStyle/>
                 <MainContentStyle>
-                    <SubContentStyle elevation={3}>
-                        <h5>2</h5>
-                        <h5>2</h5>
-                        <h5>2</h5>
-                        <h5>2</h5>
-                        <h5>2</h5>
-                        <h5>2</h5>
-                        <h5>2</h5>
-                        <h5>2</h5>
-                        <h5>2</h5>
-                    </SubContentStyle>
+                    <WallComponent title={'1 Parede'}/>
+                    <WallComponent title={'1 Parede'}/>
+                    <WallComponent title={'1 Parede'}/>
+                    <WallComponent title={'1 Parede'}/>
                 </MainContentStyle>
             </>
         );

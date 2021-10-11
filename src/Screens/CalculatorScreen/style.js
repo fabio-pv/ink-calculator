@@ -16,5 +16,48 @@ export const MainContentStyle = styled.div`
 `;
 
 export const SubContentStyle = styled(Paper)`
-  width: 80%;
+  width: 600px;
+  padding: 20px;
+  margin-bottom: 30px;
+`;
+
+export const TextFieldContentStyle = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+
+  svg {
+    width: 100px;
+    margin-right: 130px;
+  }
+
+  div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold;
+    height: 70px;
+  }
+  
+  h5 {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+`;
+
+export const SlideContentStyled = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  svg {
+    width: 100px;
+    margin-right: 130px;
+  }
 `;

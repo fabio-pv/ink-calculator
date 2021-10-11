@@ -71,8 +71,9 @@ class TextFieldDefault extends Component {
 
     render() {
         return (
-            <TextFieldDefaultStyled variant={'outlined'}
-                                    fullWidth={(this.props.fullWidth ?? true)}
+            <TextFieldDefaultStyled label={this.props.label}
+                                    variant={'outlined'}
+                                    fullWidth={(this.props.fullWidth ?? false)}
                                     select={this.props.select}
                                     margin={'normal'}
                                     onChange={this.props.onChange}
@@ -87,13 +88,7 @@ class TextFieldDefault extends Component {
                                     error={this.isErro()}
                                     helperText={this.tryGetErro()}
                                     size={this.props.size}
-                                    InputLabelProps={{
-                                        shrink: false,
-                                    }}
-                                    InputProps={{
-                                        inputComponent: this.props.mask,
-                                        endAdornment: this.getPasswordVisibility(),
-                                    }}>
+                                    width={this.props.width}>
                 {this.props.children}
             </TextFieldDefaultStyled>
         );
