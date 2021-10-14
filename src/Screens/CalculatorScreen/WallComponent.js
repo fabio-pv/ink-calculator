@@ -22,7 +22,7 @@ class WallComponent extends Component {
         );
     }
 
-    callback() {
+    callback = () => {
         return this.state;
     }
 

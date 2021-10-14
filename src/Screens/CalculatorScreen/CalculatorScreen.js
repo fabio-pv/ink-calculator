@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {HeaderStyle, MainContentStyle, SubContentStyle, TextFieldContentStyle} from "./style";
 import WallComponent from "./WallComponent";
+import WallService from "../../Services/WallService";
+import {Button} from "@material-ui/core";
 
 class CalculatorScreen extends Component {
     static ROUTE = '/';
@@ -17,12 +19,11 @@ class CalculatorScreen extends Component {
 
     doCalc = () => {
 
-
+        WallService.checkRules(this.wallsValues);
 
     }
 
     render() {
-        console.log(this.wallsValues);
         return (
             <>
                 <HeaderStyle/>
@@ -31,6 +32,7 @@ class CalculatorScreen extends Component {
                                    callback={(value) => this.wallsValues.push(value)}/>
                     <WallComponent title={'2 Parede'}
                                    callback={(value) => this.wallsValues.push(value)}/>
+                    <Button onClick={this.doCalc}>calcular</Button>
                 </MainContentStyle>
             </>
         );
