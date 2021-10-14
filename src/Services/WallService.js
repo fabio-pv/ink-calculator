@@ -4,6 +4,7 @@ import Window from "../Models/Window";
 const MINI_WALL = 100;
 const MAX_WALL = 1500;
 const MAX_PERCENT_AREA_WINDOW_DOOR = .5;
+const NEED_DIFF_HEIGHT_DOOR_WALL = 30;
 
 class WallService {
     constructor(values) {
@@ -28,6 +29,7 @@ class WallService {
                 this.checkHeightWallRule(value);
                 this.saveAreaWall(value, index);
                 this.checkTotalAreaWindowDoor(value, index);
+                this.checkWallHeightComparedDoor(value);
 
             });
 
@@ -69,8 +71,20 @@ class WallService {
         const windowAreaTotal = value.window * Window.area;
         const doorWindowAreaTotal = doorAreaTotal + windowAreaTotal;
 
-        if ((wallAreaTotal * MAX_PERCENT_AREA_WINDOW_DOOR) < doorWindowAreaTotal){
-         throw 'A area das portas e janelas nao podem ser maior que ...'
+        if ((wallAreaTotal * MAX_PERCENT_AREA_WINDOW_DOOR) < doorWindowAreaTotal) {
+            throw 'A area das portas e janelas nao podem ser maior que ...'
+        }
+    }
+
+    checkWallHeightComparedDoor(value) {
+        if (value.door === undefined) {
+            return;
+        }
+
+        const heightDiff = value.height - Door.measures.height;
+
+        if (heightDiff < NEED_DIFF_HEIGHT_DOOR_WALL) {
+            throw 'A parede deve ter uma diferenca de altura ....'
         }
     }
 
