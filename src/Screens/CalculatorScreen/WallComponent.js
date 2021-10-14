@@ -8,6 +8,43 @@ import {ReactComponent as WindowIcon} from "../../Assets/window.svg";
 import {ReactComponent as DoorIcon} from "../../Assets/door.svg";
 
 class WallComponent extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            erros: null,
+        };
+    }
+
+    componentDidMount() {
+        this.props.callback(
+            this.callback
+        );
+    }
+
+    callback() {
+        return this.state;
+    }
+
+    handleChange(event, name) {
+        const {value} = event.target;
+        this.setState({
+            [name]: value
+        });
+    }
+
+    doorHandleChange(value) {
+        this.setState({
+            door: value,
+        });
+    }
+
+    windowHandleChange(value) {
+        this.setState({
+            window: value,
+        });
+    }
+
     render() {
         return (
             <SubContentStyle elevation={3}>
@@ -17,14 +54,16 @@ class WallComponent extends Component {
                 <TextFieldContentStyle>
                     <WallIcon/>
                     <div>
-                        <TextFieldDefault label={'Altura (cm)'}
-                                          width={160}>
-
+                        <TextFieldDefault label={'Comprimento (cm)'}
+                                          width={160}
+                                          erros={this.state.erros}
+                                          onChange={(event) => this.handleChange(event, 'width')}>
                         </TextFieldDefault>
                         <h5>x</h5>
-                        <TextFieldDefault label={'Comprimento (cm)'}
-                                          width={160}>
-
+                        <TextFieldDefault label={'Altura (cm)'}
+                                          width={160}
+                                          erros={this.state.erros}
+                                          onChange={(event) => this.handleChange(event, 'height')}>
                         </TextFieldDefault>
                     </div>
                 </TextFieldContentStyle>
@@ -34,7 +73,9 @@ class WallComponent extends Component {
                             valueLabelDisplay={'auto'}
                             step={1}
                             min={0}
-                            max={5}/>
+                            max={5}
+                            erros={this.state.erros}
+                            onChange={(event, newValue) => this.windowHandleChange(newValue)}/>
                 </SlideContentStyled>
                 <SlideContentStyled>
                     <DoorIcon/>
@@ -42,7 +83,9 @@ class WallComponent extends Component {
                             valueLabelDisplay={'auto'}
                             step={1}
                             min={0}
-                            max={5}/>
+                            max={5}
+                            erros={this.state.erros}
+                            onChange={(event, newValue) => this.doorHandleChange(newValue)}/>
                 </SlideContentStyled>
             </SubContentStyle>
         );
