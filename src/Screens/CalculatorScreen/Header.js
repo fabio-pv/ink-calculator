@@ -36,7 +36,7 @@ class Header extends Component {
                     <Typography variant={'h5'}>Areá Total</Typography>
                     <hr/>
                     <Typography variant={'h6'}
-                                align={'center'}>Abaixo nossa recomendacao de tamanhos de latas de tintas:</Typography>
+                                align={'center'}>Abaixo nossa recomendação de tamanhos de latas de tintas:</Typography>
                     {this.makeList()}
                 </>
                 }
