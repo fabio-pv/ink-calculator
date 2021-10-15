@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {HeaderStyle, MainContentStyle, SubContentStyle, TextFieldContentStyle} from "./style";
 import WallComponent from "./WallComponent";
 import WallService from "../../Services/WallService";
-import {Button} from "@material-ui/core";
+import {Button, Grid} from "@material-ui/core";
 import InkService from "../../Services/InkService";
 import FabComponent from "../../Components/Fab/FabComponent";
 import Header from "./Header";
@@ -49,16 +49,19 @@ class CalculatorScreen extends Component {
             <>
                 <Header ink={this.state.ink}/>
                 <MainContentStyle>
-                    <WallComponent title={'1 Parede'}
-                                   callback={(value) => this.wallsValues.push(value)}/>
-                    <WallComponent title={'2 Parede'}
-                                   callback={(value) => this.wallsValues.push(value)}/>
-                    <WallComponent title={'3 Parede'}
-                                   callback={(value) => this.wallsValues.push(value)}/>
-                    <WallComponent title={'4 Parede'}
-                                   callback={(value) => this.wallsValues.push(value)}/>
-                    <FabComponent onClick={this.doCalc}/>
+                    <Grid container={true}
+                          spacing={3}>
+                        <WallComponent title={'1 Parede'}
+                                       callback={(value) => this.wallsValues.push(value)}/>
+                        <WallComponent title={'2 Parede'}
+                                       callback={(value) => this.wallsValues.push(value)}/>
+                        <WallComponent title={'3 Parede'}
+                                       callback={(value) => this.wallsValues.push(value)}/>
+                        <WallComponent title={'4 Parede'}
+                                       callback={(value) => this.wallsValues.push(value)}/>
+                    </Grid>
                 </MainContentStyle>
+                <FabComponent onClick={this.doCalc}/>
             </>
         );
     }
