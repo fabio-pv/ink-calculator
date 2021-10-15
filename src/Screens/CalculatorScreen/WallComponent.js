@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import {ReactComponent as WallIcon} from "../../Assets/wall.svg";
 import {ReactComponent as WindowIcon} from "../../Assets/window.svg";
 import {ReactComponent as DoorIcon} from "../../Assets/door.svg";
+import ConvertUtil from "../../Utils/ConvertUtil";
 
 class WallComponent extends Component {
     constructor(props) {
@@ -28,8 +29,9 @@ class WallComponent extends Component {
 
     handleChange(event, name) {
         const {value} = event.target;
+
         this.setState({
-            [name]: value
+            [name]: ConvertUtil.mToCm(value),
         });
     }
 
@@ -54,15 +56,15 @@ class WallComponent extends Component {
                 <TextFieldContentStyle>
                     <WallIcon/>
                     <div>
-                        <TextFieldDefault label={'Comprimento (cm)'}
+                        <TextFieldDefault label={'Comprimento (m2)'}
                                           width={160}
-                                          erros={this.state.erros}
+                                          type={'number'}
                                           onChange={(event) => this.handleChange(event, 'width')}>
                         </TextFieldDefault>
                         <h5>x</h5>
-                        <TextFieldDefault label={'Altura (cm)'}
+                        <TextFieldDefault label={'Altura (m2)'}
                                           width={160}
-                                          erros={this.state.erros}
+                                          type={'number'}
                                           onChange={(event) => this.handleChange(event, 'height')}>
                         </TextFieldDefault>
                     </div>

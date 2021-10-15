@@ -33,28 +33,39 @@ class WallService {
             return this;
 
         } catch (e) {
-            throw e;
+            throw {
+                index: indexAux,
+                error: e,
+            };
         }
 
     }
 
     checkWidthWallRule(value) {
+        if (value.width === undefined) {
+            throw 'Campo Comprimento não pode ser vazio';
+        }
+
         if (value.width < MINI_WALL) {
-            throw 'tamanho minimo comprimento';
+            throw `Tamanho mínimo aceito é ${MINI_WALL}m`;
         }
 
         if (value.width > MAX_WALL) {
-            throw 'tamanho maximo comprimento';
+            throw `Tamanho máximo aceito é ${MAX_WALL}`;
         }
     }
 
     checkHeightWallRule(value) {
-        if (value.height < MINI_WALL) {
-            throw 'tamanho minimo altura';
+        if (value.height === undefined) {
+            throw 'Campo Altura não pode ser vazio';
         }
 
-        if (value.height > MAX_WALL) {
-            throw 'tamanho maximo altura';
+        if (value.width < MINI_WALL) {
+            throw `Tamanho mínimo aceito é ${MINI_WALL}m`;
+        }
+
+        if (value.width > MAX_WALL) {
+            throw `Tamanho máximo aceito é ${MAX_WALL}`;
         }
     }
 
@@ -77,7 +88,7 @@ class WallService {
         this.saveAreaWall(newWallAreaTotal, index);
 
         if ((wallAreaTotal * MAX_PERCENT_AREA_WINDOW_DOOR) < doorWindowAreaTotal) {
-            throw 'A area das portas e janelas nao podem ser maior que ...'
+            throw `O total de janelas e portas ultrapassou ${MAX_PERCENT_AREA_WINDOW_DOOR * 100}% da área da parede`
         }
     }
 
@@ -89,7 +100,7 @@ class WallService {
         const heightDiff = value.height - Door.measures.height;
 
         if (heightDiff < NEED_DIFF_HEIGHT_DOOR_WALL) {
-            throw 'A parede deve ter uma diferenca de altura ....'
+            throw `A parede deve ser ${NEED_DIFF_HEIGHT_DOOR_WALL}cm maior que a porta`;
         }
     }
 

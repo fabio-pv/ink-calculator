@@ -6,9 +6,11 @@ import {Button} from "@material-ui/core";
 import InkService from "../../Services/InkService";
 import FabComponent from "../../Components/Fab/FabComponent";
 import Header from "./Header";
+import {SuperContext} from "../../Contexts/SuperContext";
 
 class CalculatorScreen extends Component {
     static ROUTE = '/';
+    static contextType = SuperContext;
 
     constructor(props) {
         super(props);
@@ -27,23 +29,33 @@ class CalculatorScreen extends Component {
             const sumArea = WallService.checkRules(this.wallsValues).getAreaTotal();
             const ink = InkService.start(sumArea).calcInks();
 
-            console.log(ink);
+            window.scrollTo(0, 0);
 
             this.setState({
                 ink,
             });
 
         } catch (e) {
-            console.log(e);
+            this.context.showDialog({
+                open: true,
+                title: `Sua parede ${e.index + 1} possui o seguinte problema:`,
+                bodyText: e.error,
+            });
         }
     }
 
     render() {
         return (
             <>
-                <Header/>
+                <Header ink={this.state.ink}/>
                 <MainContentStyle>
                     <WallComponent title={'1 Parede'}
+                                   callback={(value) => this.wallsValues.push(value)}/>
+                    <WallComponent title={'2 Parede'}
+                                   callback={(value) => this.wallsValues.push(value)}/>
+                    <WallComponent title={'3 Parede'}
+                                   callback={(value) => this.wallsValues.push(value)}/>
+                    <WallComponent title={'4 Parede'}
                                    callback={(value) => this.wallsValues.push(value)}/>
                     <FabComponent onClick={this.doCalc}/>
                 </MainContentStyle>
