@@ -21,20 +21,19 @@ class WallService {
     startCheck() {
         let indexAux;
         try {
-
             this.values.map((value, index) => {
                 indexAux = index;
                 value = value();
                 this.checkWidthWallRule(value);
                 this.checkHeightWallRule(value);
-                this.saveAreaWall(value, index);
                 this.checkTotalAreaWindowDoor(value, index);
                 this.checkWallHeightComparedDoor(value);
-
             });
 
+            return this;
+
         } catch (e) {
-            console.log(indexAux, e);
+            throw e;
         }
 
     }
@@ -59,17 +58,23 @@ class WallService {
         }
     }
 
-    saveAreaWall(value, index) {
-        this.areaTotal[index] = value.width * value.height;
-    }
-
     checkTotalAreaWindowDoor(value, index) {
+        const wallAreaTotal = value.width * value.height;
 
-        const wallAreaTotal = this.areaTotal[index];
+        let doorAreaTotal = 0;
+        if (value.door !== undefined) {
+            doorAreaTotal = value.door * Door.area;
+        }
 
-        const doorAreaTotal = value.door * Door.area;
-        const windowAreaTotal = value.window * Window.area;
+        let windowAreaTotal = 0;
+        if (value.window !== undefined) {
+            windowAreaTotal = value.window * Window.area;
+        }
+
         const doorWindowAreaTotal = doorAreaTotal + windowAreaTotal;
+
+        const newWallAreaTotal = wallAreaTotal - doorWindowAreaTotal;
+        this.saveAreaWall(newWallAreaTotal, index);
 
         if ((wallAreaTotal * MAX_PERCENT_AREA_WINDOW_DOOR) < doorWindowAreaTotal) {
             throw 'A area das portas e janelas nao podem ser maior que ...'
@@ -88,6 +93,19 @@ class WallService {
         }
     }
 
+    saveAreaWall(value, index) {
+        this.areaTotal[index] = value;
+    }
+
+    getAreaTotal() {
+        let sumArea = 0;
+        console.log(this.areaTotal);
+        this.areaTotal.map((value) => {
+            sumArea += value;
+        });
+
+        return sumArea;
+    }
 }
 
 export default WallService;

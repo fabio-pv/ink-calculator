@@ -3,6 +3,9 @@ import {HeaderStyle, MainContentStyle, SubContentStyle, TextFieldContentStyle} f
 import WallComponent from "./WallComponent";
 import WallService from "../../Services/WallService";
 import {Button} from "@material-ui/core";
+import InkService from "../../Services/InkService";
+import FabComponent from "../../Components/Fab/FabComponent";
+import Header from "./Header";
 
 class CalculatorScreen extends Component {
     static ROUTE = '/';
@@ -12,27 +15,37 @@ class CalculatorScreen extends Component {
 
         this.state = {
             wall1: null,
+            ink: null,
         };
 
         this.wallsValues = [];
     }
 
     doCalc = () => {
+        try {
 
-        WallService.checkRules(this.wallsValues);
+            const sumArea = WallService.checkRules(this.wallsValues).getAreaTotal();
+            const ink = InkService.start(sumArea).calcInks();
 
+            console.log(ink);
+
+            this.setState({
+                ink,
+            });
+
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     render() {
         return (
             <>
-                <HeaderStyle/>
+                <Header/>
                 <MainContentStyle>
                     <WallComponent title={'1 Parede'}
                                    callback={(value) => this.wallsValues.push(value)}/>
-                    <WallComponent title={'2 Parede'}
-                                   callback={(value) => this.wallsValues.push(value)}/>
-                    <Button onClick={this.doCalc}>calcular</Button>
+                    <FabComponent onClick={this.doCalc}/>
                 </MainContentStyle>
             </>
         );

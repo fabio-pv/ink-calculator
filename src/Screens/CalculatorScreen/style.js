@@ -3,8 +3,36 @@ import {Paper} from "@material-ui/core";
 
 export const HeaderStyle = styled.div`
   width: 100%;
-  height: 300px;
+  height: 500px;
   background: #e78c20;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  
+  h3 {
+    font-weight: bold;
+    
+    sup {
+      font-size: 25px;
+    }
+  }
+  
+  h6 {
+    font-weight: normal;
+    margin-bottom: 20px;
+  }
+
+  hr {
+    width: 600px;
+  }
+  
+  p {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0 0 5px 0;
+  }
 `;
 
 export const MainContentStyle = styled.div`
