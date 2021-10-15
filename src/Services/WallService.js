@@ -13,9 +13,7 @@ class WallService {
     }
 
     static checkRules(values) {
-
         return new WallService(values).startCheck();
-
     }
 
     startCheck() {
@@ -38,7 +36,6 @@ class WallService {
                 error: e,
             };
         }
-
     }
 
     checkWidthWallRule(value) {
@@ -110,7 +107,6 @@ class WallService {
 
     getAreaTotal() {
         let sumArea = 0;
-        console.log(this.areaTotal);
         this.areaTotal.map((value) => {
             sumArea += value;
         });

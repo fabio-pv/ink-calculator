@@ -18,6 +18,7 @@ class CalculatorScreen extends Component {
         this.state = {
             wall1: null,
             ink: null,
+            countError: null,
         };
 
         this.wallsValues = [];
@@ -25,6 +26,10 @@ class CalculatorScreen extends Component {
 
     doCalc = () => {
         try {
+
+            this.setState({
+                countError: null,
+            });
 
             const sumArea = WallService.checkRules(this.wallsValues).getAreaTotal();
             const ink = InkService.start(sumArea).calcInks();
@@ -36,6 +41,9 @@ class CalculatorScreen extends Component {
             });
 
         } catch (e) {
+            this.setState({
+                countError: e.index + 1,
+            });
             this.context.showDialog({
                 open: true,
                 title: `Sua parede ${e.index + 1} possui o seguinte problema:`,
@@ -51,13 +59,17 @@ class CalculatorScreen extends Component {
                 <MainContentStyle>
                     <Grid container={true}
                           spacing={3}>
-                        <WallComponent title={'1 Parede'}
+                        <WallComponent count={1}
+                                       countError={this.state.countError}
                                        callback={(value) => this.wallsValues.push(value)}/>
-                        <WallComponent title={'2 Parede'}
+                        <WallComponent count={2}
+                                       countError={this.state.countError}
                                        callback={(value) => this.wallsValues.push(value)}/>
-                        <WallComponent title={'3 Parede'}
+                        <WallComponent count={3}
+                                       countError={this.state.countError}
                                        callback={(value) => this.wallsValues.push(value)}/>
-                        <WallComponent title={'4 Parede'}
+                        <WallComponent count={4}
+                                       countError={this.state.countError}
                                        callback={(value) => this.wallsValues.push(value)}/>
                     </Grid>
                 </MainContentStyle>

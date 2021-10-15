@@ -11,24 +11,24 @@ export const HeaderStyle = styled.div`
   align-items: center;
   color: white;
   padding: 20px;
-  
+
   h3 {
     font-weight: bold;
-    
+
     sup {
       font-size: 25px;
     }
   }
-  
+
   h6 {
     font-weight: normal;
     margin-bottom: 20px;
   }
 
   hr {
-    width: 600px;
+    width: 95%;
   }
-  
+
   p {
     font-size: 22px;
     font-weight: bold;
@@ -44,6 +44,7 @@ export const MainContentStyle = styled.div`
 export const SubContentStyle = styled(Paper)`
   padding: 20px;
   border-radius: 20px;
+  background: ${props => props.hasError ? '#ffbab5' : '#fff'};
 `;
 
 export const TextFieldContentStyle = styled.div`
@@ -67,7 +68,7 @@ export const TextFieldContentStyle = styled.div`
     font-weight: bold;
     height: 70px;
   }
-  
+
   h5 {
     margin-left: 20px;
     margin-right: 20px;

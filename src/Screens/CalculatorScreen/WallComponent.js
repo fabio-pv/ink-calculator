@@ -55,10 +55,11 @@ class WallComponent extends Component {
                   md={6}
                   lg={6}
                   xl={3}>
-                <SubContentStyle elevation={3}>
+                <SubContentStyle elevation={3}
+                                 hasError={this.props.count === this.props.countError}>
                     <Typography variant={'h5'}
                                 align={'center'}>
-                        {this.props.title}
+                        {this.props.count} Parede
                     </Typography>
                     <SpacerComponent height={50}/>
                     <TextFieldContentStyle>

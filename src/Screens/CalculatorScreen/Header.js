@@ -5,9 +5,7 @@ import PropTypes from 'prop-types';
 import ConvertUtil from "../../Utils/ConvertUtil";
 
 class Header extends Component {
-
     makeList() {
-
         const counts = {};
         this.props.ink.inksNeed.forEach((x) => {
             counts[x] = (counts[x] || 0) + 1;
@@ -19,7 +17,6 @@ class Header extends Component {
                 <p>{counts[key]}x {key}L</p>
             );
         });
-
         return list;
     }
 
