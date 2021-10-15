@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {Grid, Paper} from "@material-ui/core";
+import {Paper} from "@material-ui/core";
 
 export const HeaderStyle = styled.div`
   width: 100%;

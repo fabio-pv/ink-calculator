@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {HeaderStyle, MainContentStyle, SubContentStyle, TextFieldContentStyle} from "./style";
+import {MainContentStyle} from "./style";
 import WallComponent from "./WallComponent";
 import WallService from "../../Services/WallService";
-import {Button, Grid} from "@material-ui/core";
+import {Grid} from "@material-ui/core";
 import InkService from "../../Services/InkService";
 import FabComponent from "../../Components/Fab/FabComponent";
 import Header from "./Header";
