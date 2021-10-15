@@ -64,12 +64,12 @@ class WallComponent extends Component {
                     <SpacerComponent height={50}/>
                     <TextFieldContentStyle>
                         <div>
-                            <TextFieldDefault label={'Comprimento (m2)'}
+                            <TextFieldDefault label={'Comprimento (m)'}
                                               type={'number'}
                                               onChange={(event) => this.handleChange(event, 'width')}>
                             </TextFieldDefault>
                             <h5>x</h5>
-                            <TextFieldDefault label={'Altura (m2)'}
+                            <TextFieldDefault label={'Altura (m)'}
                                               type={'number'}
                                               onChange={(event) => this.handleChange(event, 'height')}>
                             </TextFieldDefault>
